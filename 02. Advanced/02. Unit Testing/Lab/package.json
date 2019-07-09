@@ -1,0 +1,8 @@
+{
+  "name": "03.UNIT Testing(Lab)",
+  "version": "1.0.0",
+  "dependencies": {
+    "assert.js": "^0.5.0",
+    "chai": "latest"
+  }
+}

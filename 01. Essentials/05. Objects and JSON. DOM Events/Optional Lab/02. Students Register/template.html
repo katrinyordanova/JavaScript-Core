@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="./style/template.css">
+    <title>Students Register</title>
+</head>
+
+<body>
+    <div id="container">
+        <nav id="navigation">
+            <div id="navigation-text">
+                <p id="lecture-name">Objects, JSON and DOM Events</p>
+                <p id="problem-name">02. Students Register</p>
+            </div>
+            <img id="logo-img" src="./images/SoftUniFoundation_Logo_OneLine_White@2x.png" alt="logo">
+        </nav>
+        <main>
+            <div id="exercise">
+                <form>
+                    <label>Students</label>
+                    <textarea type="text" id="input" rows="10" cols="50"></textarea>
+                    <div class="center">
+                        <input type="submit" id="button" onclick="addStudents()" value="Add Students">
+                    </div>
+                </form>
+                <label>Result</label>
+               <textarea readonly rows="10" cols="50" id="result"></textarea>
+            </div>
+            <img id="softUni-person-img" src="./images/cw_2_New_Logo.png" alt="softUni-person">
+        </main>
+        <footer>
+            <p id="footer-text">Check your solution here: <span id="check-judge">Link to judge</span>
+            </p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById("button").addEventListener("click", function(event){
+            event.preventDefault()
+        });
+        function addStudents() {
+            let inputElement=document.getElementById("input").value.split("\n");
+            let resultElement=document.getElementById("result");
+            let result=[];
+            for (let element of inputElement) {
+                let info=element.split(" ");
+                let students={};
+                students["firstName"]=info[0];
+                students["lastName"]=info[1];
+                students["grade"]=Number(info[2]);
+                result.push(students);
+            }
+            let resultString="";
+            resultString+="Students are: ";
+            resultString+=result.map(x=>x["firstName"] + " " + x["lastName"]).join(", ");
+            resultString+="\n";
+            resultString+="Average grade: " +
+                (result.map(x=>x["grade"]).reduce((a,b)=>a+b) / result.length).toFixed(2);
+            resultElement.innerHTML=resultString;
+        }
+    </script>
+</body>
+
+</html>

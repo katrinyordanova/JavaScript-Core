@@ -1,0 +1,27 @@
+<table border="1" id="customers">
+    <tr><th>Name</th><th>Email</th></tr>
+    <tr><td>Eve</td><td>eve@gmail.com</td></tr>
+    <tr><td>Nick</td><td>nick@yahooo.com</td></tr>
+    <tr><td>Didi</td><td>didi@didi.net</td></tr>
+    <tr><td>Tedy</td><td>tedy@tedy.com</td></tr>
+</table>
+Email: <input type="text" name="email" />
+<button onclick="deleteByEmail()">Delete</button>
+<div id="result" />
+<script>
+    function deleteByEmail() {
+        let tableData=document.getElementsByTagName("td");
+        let email=document.getElementsByTagName("input");
+        let result=document.getElementById("result");
+
+        Array.from(tableData).filter((d) => d.textContent.includes(email.value))
+            .forEach((d) => {
+                let parent = d.parentElement.parentElement;
+                let tableRowElement = d.parentElement;
+                    parent.removeChild(tableRowElement);
+                    //result.textContent="Deleted.";
+                    //result.textContent="Not found.";
+
+            });
+    }
+</script>

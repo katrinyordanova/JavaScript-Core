@@ -1,0 +1,54 @@
+<div id="time" style="border:3px solid blue; text-align:center; font-size:2em; margin-bottom:10px">00:00</div>
+<button id="startBtn">Start</button>
+<button id="stopBtn" disabled="true">Stop</button>
+<script>
+    window.onload = function stopwatch(){
+        let startButton=document.getElementById("startBtn");
+        let stopButton=document.getElementById("stopBtn");
+        let time=document.getElementById("time");
+
+        let clock;
+
+        startButton.addEventListener("click", () => {
+            startButton.setAttribute("disabled", "true");
+            stopButton.removeAttribute("disabled");
+            time.textContent="00:00";
+
+            let minutes=0;
+            let seconds=0;
+
+            let currentTime="";
+
+            clock=setInterval(() => {
+
+                seconds++;
+
+                if (seconds>59){
+                    seconds=0;
+                    minutes++;
+                }
+
+                if (minutes<10){
+                    currentTime="0" + minutes.toString();
+                } else{
+                    currentTime=minutes.toString();
+                }
+
+                if (seconds<10){
+                    currentTime+=":0" + seconds.toString();
+                } else{
+                    currentTime+=":"+seconds.toString();
+                }
+
+                time.textContent=currentTime;
+
+            },1000)
+        });
+
+        stopButton.addEventListener("click", () => {
+            stopButton.setAttribute("disabled", "true");
+            startButton.removeAttribute("disabled");
+            clearInterval(clock);
+        });
+    }
+</script>
